@@ -1,7 +1,9 @@
-library core;
+library core.entities;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'src/entities/menu_item.dart';
+export 'src/entities/menu_item_option.dart';
+export 'src/entities/food_category.dart';
+export 'src/entities/menu_section.dart';
+export 'src/entities/restaurant.dart';
+export 'src/entities/review.dart';
+export 'src/entities/working_hours.dart';
