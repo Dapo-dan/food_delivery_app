@@ -15,9 +15,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({
     required FoodCategoryRepository foodCategoryRepository,
     required RestaurantRepository restaurantRepository,
-  }) : _foodCategoryRepository = foodCategoryRepository,
-  _restaurantRepository = restaurantRepository, 
-  super(const HomeState()) {
+  })  : _foodCategoryRepository = foodCategoryRepository,
+        _restaurantRepository = restaurantRepository,
+        super(const HomeState()) {
     on<LoadHomeEvent>(_onLoadHome);
   }
 
@@ -28,9 +28,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     debugPrint('LoadHomeEvent');
     emit(state.copyWith(status: HomeStatus.loading));
     try {
-      final foodCategoriesFuture = _foodCategoryRepository.fetchFoodCategories();
-      final popularRestaurantsFuture = _restaurantRepository.fetchPopularRestaurants();
-      final featuredRestaurantsFuture = _restaurantRepository.fetchFeaturedRestaurants();
+      final foodCategoriesFuture =
+          _foodCategoryRepository.fetchFoodCategories();
+      final popularRestaurantsFuture =
+          _restaurantRepository.fetchPopularRestaurants();
+      final featuredRestaurantsFuture =
+          _restaurantRepository.fetchFeaturedRestaurants();
 
       final response = await Future.wait([
         foodCategoriesFuture,
@@ -39,23 +42,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ]);
 
       final foodCategories = response[0] as List<FoodCategory>;
-      final popularRestaurants = response[0] as List<Restaurant>;
-      final featuredRestaurants = response[0] as List<Restaurant>;
+      final popularRestaurants = response[1] as List<Restaurant>;
+      final featuredRestaurants = response[2] as List<Restaurant>;
       final shopsNearby = [
         {
           'title': '7-Eleven',
-          'subtitle' : '10 mins',
-          'imageUrl' : 'assets/images/711.png',
+          'subtitle': '10 mins',
+          'imageUrl': 'assets/images/711.png',
         },
         {
           'title': 'Guardian',
-          'subtitle' : '15 mins',
-          'imageUrl' : 'assets/images/guardian.png',
+          'subtitle': '15 mins',
+          'imageUrl': 'assets/images/guardian.png',
         },
         {
           'title': 'Walgreens',
-          'subtitle' : '15 mins',
-          'imageUrl' : 'assets/images/walgreens.png',
+          'subtitle': '15 mins',
+          'imageUrl': 'assets/images/walgreens.png',
         },
       ];
 
@@ -66,11 +69,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         featuredRestaurants: featuredRestaurants,
         shopsNearby: shopsNearby,
       ));
-      
-    } catch (err){
+    } catch (err) {
       debugPrint(err.toString());
       emit(state.copyWith(status: HomeStatus.error));
-
     }
   }
 }
