@@ -9,6 +9,9 @@ import 'package:food_delivery_app/state/home/home_bloc.dart';
 part '_home_food_categories.dart';
 part '_home_restaurant_filters.dart';
 part '_home_featured_restaurants.dart';
+part '_home_popular_restaurants.dart';
+part '_home_shops_nearby.dart';
+part '_home_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,7 +28,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const _HomeAppBar(),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status == HomeStatus.initial ||
@@ -40,11 +43,13 @@ class HomeView extends StatelessWidget {
               child: Column(
                 children: [
                   _FoodCategories(),
-                  SizedBox(height: 16.0,),
+                  SizedBox(
+                    height: 16.0,
+                  ),
                   _RestaurantFilters(),
-                  SizedBox(height: 16.0,),
                   _FeaturedRestaurants(),
-                  SizedBox(height: 16.0,),
+                  _ShopsNearby(),
+                  _PopularRestaurants(),
                 ],
               ),
             );

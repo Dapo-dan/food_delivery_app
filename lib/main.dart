@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/repositories/food_category_repository.dart';
 import 'package:food_delivery_app/repositories/restaurant_repository.dart';
 import 'package:food_delivery_app/screens/home/home_screen.dart';
+import 'package:food_delivery_app/shared/theme/app_theme.dart';
 import 'package:food_delivery_app/state/home/home_bloc.dart';
 
 void main() {
@@ -47,10 +48,7 @@ class APpScreen extends StatelessWidget {
         child: MaterialApp(
           title: 'Food Delivery app',
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: const AppTheme().themeData,
           home: const HomeScreen(),
         ),
       ),
