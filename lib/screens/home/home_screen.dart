@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_app/shared/widgets/custom_action_chip.dart';
+import 'package:food_delivery_app/shared/widgets/rating_model.dart';
 import 'package:food_delivery_app/state/home/home_bloc.dart';
 
 part '_home_food_categories.dart';
