@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_delivery_app/shared/widgets/custom_action_chip.dart';
+import 'package:food_delivery_app/shared/widgets/main_nav_bar.dart';
 import 'package:food_delivery_app/shared/widgets/rating_model.dart';
 import 'package:food_delivery_app/shared/widgets/restaurant_preview_card.dart';
 import 'package:food_delivery_app/shared/widgets/section_title.dart';
@@ -29,6 +30,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const _HomeAppBar(),
+      bottomNavigationBar: const MainNavBar(),
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           if (state.status == HomeStatus.initial ||
